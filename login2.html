@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - GreenLife Farm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {font-family: Arial, sans-serif; background: #f4f9f4; text-align: center; margin: 0;}
+    header {background: #4CAF50; color: white; padding: 20px;}
+    form {
+      background: white;
+      display: inline-block;
+      margin-top: 40px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #388E3C;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Login to GreenLife Farm</h1>
+  </header>
+
+  <form action="server.php" method="POST">
+    <h2>Member Login</h2>
+    <input type="text" name="username" placeholder="Enter username" required>
+    <input type="password" name="password" placeholder="Enter password" required>
+    <button type="submit">Login</button>
+    </form>
+    <?php
+    $conn=mysqli_connect("localhost","root","","farmdb");
+
+    $name=$POST['fullname'];
+    $email=$POST['email'];
+    $pass=$POST['password'];
+    $query="INSERT INTO users(fullnam,email,password)VALUES('$name','$email',$'pass')";
+    if (mysqli_query($conn,$query)){
+      echo"Account created successfully!";
+      {else} 
+      echo"Error:".mysqli_error($conn);
+    } 
+    ?>
+    <form action="register.php"method="POST">
+      <input type="text"name="fullname" placeholder="fullname" required>
+      <input type="email"name="email"placeholder="email" required>
+      <input type="password"name="password"placeholder="password" required>
+      <button type="submit">Create account</button>
+  </form>
+
+</body>
+</html>
